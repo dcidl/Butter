@@ -1,3 +1,6 @@
 [submodule "Assets/Plugins/AVGFramework"]
 	path = Assets/Plugins/AVGFramework
 	url = https://office.concordmoon.cn/git/LunarSpaceStation/AVGFramework.git
+[submodule "Assets/Plugins/GameFramework"]
+	path = Assets/Plugins/GameFramework
+	url = https://office.concordmoon.cn/git/GensokyoInterface/GameFramework.git
