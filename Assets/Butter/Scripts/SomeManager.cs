@@ -21,7 +21,7 @@ namespace Butter
             base.onStart();
             Debug.Log("一些必须要其他管理器都初始化完了才能进行的逻辑", this);
         }
-        public override IAsyncOperation onStartLoadingScene(string path)
+        protected override IAsyncOperation onStartLoadingScene(string path)
         {
             return new WaitAsyncOperation(5);
         }
@@ -47,6 +47,14 @@ namespace Butter
             get
             {
                 return (Time.time - _startTime) >= _duration;
+            }
+        }
+
+        public float estimatedTime
+        {
+            get
+            {
+                return _duration;
             }
         }
     }

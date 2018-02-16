@@ -1,16 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+
 using UnityEngine;
 
 using GameFramework;
-using UnityEngine.SceneManagement;
 
 namespace Butter
 {
     public class ButterManager : GlobalMainManager
     {
-        [HideInInspector]
         [SerializeField]
+        [ScenePathField]
         string _firstScenePath;
         public override string firstScenePath
         {
@@ -21,7 +21,7 @@ namespace Butter
         }
         [SerializeField]
         StartMenuLoadingUI _startMenuLoadingUIPrefab;
-        public override IAsyncOperation onStartLoadingScene(string path)
+        protected override IAsyncOperation onStartLoadingScene(string path)
         {
             if (path == firstScenePath && _startMenuLoadingUIPrefab != null)
             {
@@ -39,7 +39,7 @@ namespace Butter
                 _loadingUI.progress = progress;
             }
         }
-        public override void onEndLoadingScene(string path)
+        protected override void onEndLoadingScene(string path)
         {
             if (_loadingUI != null)
             {
@@ -47,6 +47,13 @@ namespace Butter
                 _loadingUI = null;
             }
             base.onEndLoadingScene(path);
+        }
+        public void quit()
+        {
+#if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+#endif
+            Application.Quit();
         }
     }
 }
