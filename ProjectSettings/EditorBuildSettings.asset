@@ -11,3 +11,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Butter/Scenes/StartMenu.unity
     guid: 0bbca36f132f88f47b7524e9869d2c73
+  - enabled: 1
+    path: Assets/Butter/Scenes/Game.unity
+    guid: 3eb01b3f0e5cf7a45832aff9afce9cfa

@@ -113,98 +113,84 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &152328332
+--- !u!1 &2096541495
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 1394505270955376, guid: 099b391faacdb4c439d94a2ad98da187,
-    type: 2}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 152328333}
-  - component: {fileID: 152328334}
+  - component: {fileID: 2096541499}
+  - component: {fileID: 2096541498}
+  - component: {fileID: 2096541497}
+  - component: {fileID: 2096541496}
   m_Layer: 0
-  m_Name: SomeManager
-  m_TagString: Untagged
+  m_Name: Main Camera
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &152328333
+--- !u!81 &2096541496
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2096541495}
+  m_Enabled: 1
+--- !u!124 &2096541497
+Behaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2096541495}
+  m_Enabled: 1
+--- !u!20 &2096541498
+Camera:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2096541495}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.3
+  far clip plane: 1000
+  field of view: 60
+  orthographic: 1
+  orthographic size: 5
+  m_Depth: -1
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
+--- !u!4 &2096541499
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 4935285643303824, guid: 099b391faacdb4c439d94a2ad98da187,
-    type: 2}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 152328332}
+  m_GameObject: {fileID: 2096541495}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1912566652}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &152328334
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114154168823682624, guid: 099b391faacdb4c439d94a2ad98da187,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 152328332}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e54fc47531f4a4a459aea02dcc3089fe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _children: []
-  _manager: {fileID: 0}
---- !u!1 &1912566650
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 1879127500676626, guid: 099b391faacdb4c439d94a2ad98da187,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 1912566652}
-  - component: {fileID: 1912566651}
-  m_Layer: 0
-  m_Name: ButterManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1912566651
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114245991972326428, guid: 099b391faacdb4c439d94a2ad98da187,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1912566650}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9aa6500c6c88a234da91b87b0abeec9a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _children: []
-  _firstScenePath: Butter/Scenes/StartMenu
-  _startMenuLoadingUIPrefab: {fileID: 114203177601972090, guid: 09dd4c24f741b8a47a4b2935dd97829e,
-    type: 2}
-  _loadingUI: {fileID: 0}
-  _gameScenePath: Butter/Scenes/Game
---- !u!4 &1912566652
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 4217324366565322, guid: 099b391faacdb4c439d94a2ad98da187,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1912566650}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 152328333}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

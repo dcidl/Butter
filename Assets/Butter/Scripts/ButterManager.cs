@@ -27,6 +27,10 @@ namespace Butter
             {
                 _loadingUI = Instantiate(_startMenuLoadingUIPrefab);
             }
+            else if (path == _gameScenePath && _startMenuLoadingUIPrefab != null)
+            {
+                _loadingUI = Instantiate(_startMenuLoadingUIPrefab);
+            }
             return base.onStartLoadingScene(path);
         }
         [SerializeField]
@@ -47,6 +51,13 @@ namespace Butter
                 _loadingUI = null;
             }
             base.onEndLoadingScene(path);
+        }
+        [SerializeField]
+        [ScenePathField]
+        string _gameScenePath;
+        public void newGame()
+        {
+            loadScene(_gameScenePath);
         }
         public void quit()
         {

@@ -26,36 +26,4 @@ namespace Butter
             return new WaitAsyncOperation(5);
         }
     }
-    public class WaitAsyncOperation : IAsyncOperation
-    {
-        float _startTime;
-        float _duration;
-        public WaitAsyncOperation(float duration)
-        {
-            _startTime = Time.time;
-            _duration = duration;
-        }
-        public float progress
-        {
-            get
-            {
-                return (Time.time - _startTime) / _duration;
-            }
-        }
-        public bool isDone
-        {
-            get
-            {
-                return (Time.time - _startTime) >= _duration;
-            }
-        }
-
-        public float estimatedTime
-        {
-            get
-            {
-                return _duration;
-            }
-        }
-    }
 }
