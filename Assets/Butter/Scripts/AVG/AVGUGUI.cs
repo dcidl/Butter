@@ -12,13 +12,10 @@ namespace Butter.StartMenu
     {
         public override bool enableInteraction
         {
-            get
-            {
-                return false;
-            }
+            get { return false; }
             set
             {
-                //暂时没实现
+                //TODO:实现禁用交互
             }
         }
         [SerializeField]
@@ -43,6 +40,13 @@ namespace Butter.StartMenu
         }
         [SerializeField]
         Canvas _root;
+        public Vector2 size
+        {
+            get
+            {
+                return (_root.transform as RectTransform).rect.size;
+            }
+        }
         public override bool isDisplaying
         {
             get { return _root.enabled; }
@@ -62,14 +66,12 @@ namespace Butter.StartMenu
                 dialog.pauseTyping = value;
             }
         }
-
         public override void clear()
         {
             clearActors();
             dialog.clearDialog();
             clearOptions();
         }
-
         public override void clearActors()
         {
             for (int i = 0; i < _actors.Count; i++)
@@ -83,6 +85,12 @@ namespace Butter.StartMenu
         UGUIAVGActor _actorPrefab;
         [SerializeField]
         RectTransform _actorRoot;
+        [SerializeField]
+        UGUIAVGAnchor[] _anchors;
+        public UGUIAVGAnchor[] anchors
+        {
+            get { return _anchors; }
+        }
         public override AVGActor getOrCreateActor(IAVGCharacter character)
         {
             for (int i = 0; i < _actors.Count; i++)
@@ -95,6 +103,7 @@ namespace Butter.StartMenu
             if (_actorPrefab != null && _actorRoot != null)
             {
                 UGUIAVGActor actor = Instantiate(_actorPrefab, _actorRoot);
+                actor.ui = this;
                 actor.character = character;
                 return actor;
             }

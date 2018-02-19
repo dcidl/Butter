@@ -1,4 +1,5 @@
-﻿
+﻿using System;
+
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,6 +10,35 @@ namespace Butter.StartMenu
 {
     public class UGUIAVGActor : AVGActor
     {
+        [SerializeField]
+        AVGUGUI _ui;
+        public AVGUGUI ui
+        {
+            get { return _ui; }
+            set
+            {
+                _ui = value;
+            }
+        }
+        [SerializeField]
+        UGUIAVGAnchor _anchor;
+        public UGUIAVGAnchor anchor
+        {
+            get { return _anchor; }
+            set
+            {
+                _anchor = value;
+                if (_anchor != null)
+                {
+                    transform.SetParent(_anchor.transform);
+                    transform.SetAsLastSibling();
+                }
+                else
+                {
+                    updatePosition();
+                }
+            }
+        }
         IAVGCharacter _character;
         public override IAVGCharacter character
         {
@@ -38,6 +68,16 @@ namespace Butter.StartMenu
             set
             {
                 _expression = value;
+                _image.sprite = value.sprite;
+                if (_image.sprite != null)
+                {
+                    updateSize(value);
+                    updatePosition();
+                }
+                else
+                {
+                    _image.enabled = false;
+                }
             }
         }
         public override Color color
@@ -72,10 +112,75 @@ namespace Butter.StartMenu
                 _image.rectTransform.SetSiblingIndex(value);
             }
         }
-
+        [Obsolete]
         public override void setAnchor(int i)
         {
-            //TODO:实现UGUIAVGActor的设置Anchor。
+            //TODO:SetAnchor不应该是属于Actor的方法，把它重构掉，功能给Anchor。
+            if (0 <= i && i < ui.anchors.Length)
+            {
+                anchor = ui.anchors[i];
+            }
+            else
+            {
+                anchor = null;
+            }
+        }
+        private void Update()
+        {
+            if (expression != null)
+            {
+                updateSize(expression);
+                updatePosition();
+            }
+            else
+                _image.enabled = false;
+        }
+        void updateSize(IAVGExpression standPic)
+        {
+            if (standPic == null)
+                return;
+            float maxWidth = ui.size.x * standPic.maxSize.x;
+            float maxHeight = ui.size.y * standPic.maxSize.y;
+            float picWidth = standPic.sprite.rect.width;
+            float picHeight = standPic.sprite.rect.height;
+
+            if (picWidth < maxWidth)
+            {
+                picHeight *= maxWidth / picWidth;
+                picWidth = maxWidth;
+            }
+            if (picHeight < maxHeight)
+            {
+                picWidth *= maxHeight / picHeight;
+                picHeight = maxHeight;
+            }
+            if (picWidth > maxWidth)
+            {
+                picHeight *= maxWidth / picWidth;
+                picWidth = maxWidth;
+            }
+            if (picHeight > maxHeight)
+            {
+                picWidth *= maxHeight / picHeight;
+                picHeight = maxHeight;
+            }
+
+            _image.rectTransform.sizeDelta = new Vector2(picWidth, picHeight);
+        }
+        void updatePosition()
+        {
+            if (anchor != null)
+            {
+                _image.rectTransform.anchorMin = position;
+                _image.rectTransform.anchorMax = position;
+                _image.rectTransform.localPosition = new Vector3(0, _image.rectTransform.sizeDelta.y / 2, 0);
+            }
+            else
+            {
+                float x = anchor.offset.x * transform.GetSiblingIndex() * ui.size.x;
+                float y = anchor.offset.y * transform.GetSiblingIndex() * ui.size.y;
+                _image.rectTransform.localPosition = new Vector3(x, _image.rectTransform.sizeDelta.y / 2 + y, 0);
+            }
         }
     }
 }
