@@ -22,12 +22,12 @@ namespace Butter.StartMenu
         }
         [SerializeField]
         UGUIAVGAnchor _anchor;
-        public UGUIAVGAnchor anchor
+        public override AVGAnchor anchor
         {
             get { return _anchor; }
             set
             {
-                _anchor = value;
+                _anchor = value as UGUIAVGAnchor;
                 if (_anchor != null)
                 {
                     transform.SetParent(_anchor.transform);
@@ -49,16 +49,18 @@ namespace Butter.StartMenu
             set
             {
                 _character = value;
+                gameObject.name = _character.name;
             }
         }
         [SerializeField]
         Image _image;
         public override Vector2 position
         {
-            get { return _image.rectTransform.anchoredPosition; }
+            get { return (_image.rectTransform.anchorMin + _image.rectTransform.anchorMax) / 2; }
             set
             {
-                _image.rectTransform.anchoredPosition = value;
+                _image.rectTransform.anchorMin = value;
+                _image.rectTransform.anchorMax = value;
             }
         }
         IAVGExpression _expression;
@@ -68,11 +70,19 @@ namespace Butter.StartMenu
             set
             {
                 _expression = value;
-                _image.sprite = value.sprite;
-                if (_image.sprite != null)
+                if (_expression != null)
                 {
-                    updateSize(value);
-                    updatePosition();
+                    _image.sprite = _expression.sprite;
+                    if (_image.sprite != null)
+                    {
+                        _image.enabled = true;
+                        updateSize(value);
+                        updatePosition();
+                    }
+                    else
+                    {
+                        _image.enabled = false;
+                    }
                 }
                 else
                 {
@@ -118,7 +128,7 @@ namespace Butter.StartMenu
             //TODO:SetAnchor不应该是属于Actor的方法，把它重构掉，功能给Anchor。
             if (0 <= i && i < ui.anchors.Length)
             {
-                anchor = ui.anchors[i];
+                anchor = ui.anchors[i] as UGUIAVGAnchor;
             }
             else
             {
@@ -169,17 +179,15 @@ namespace Butter.StartMenu
         }
         void updatePosition()
         {
-            if (anchor != null)
+            if (anchor == null)
             {
-                _image.rectTransform.anchorMin = position;
-                _image.rectTransform.anchorMax = position;
-                _image.rectTransform.localPosition = new Vector3(0, _image.rectTransform.sizeDelta.y / 2, 0);
+                _image.rectTransform.anchoredPosition = new Vector3(0, _image.rectTransform.sizeDelta.y / 2, 0);
             }
             else
             {
                 float x = anchor.offset.x * transform.GetSiblingIndex() * ui.size.x;
                 float y = anchor.offset.y * transform.GetSiblingIndex() * ui.size.y;
-                _image.rectTransform.localPosition = new Vector3(x, _image.rectTransform.sizeDelta.y / 2 + y, 0);
+                _image.rectTransform.anchoredPosition = new Vector3(x, _image.rectTransform.sizeDelta.y / 2 + y, 0);
             }
         }
     }

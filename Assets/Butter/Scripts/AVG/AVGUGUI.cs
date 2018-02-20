@@ -87,9 +87,12 @@ namespace Butter.StartMenu
         RectTransform _actorRoot;
         [SerializeField]
         UGUIAVGAnchor[] _anchors;
-        public UGUIAVGAnchor[] anchors
+        public override AVGAnchor[] anchors
         {
-            get { return _anchors; }
+            get
+            {
+                return _anchors.Select(e => { return e as AVGAnchor; }).ToArray();
+            }
         }
         public override AVGActor getOrCreateActor(IAVGCharacter character)
         {
@@ -105,6 +108,7 @@ namespace Butter.StartMenu
                 UGUIAVGActor actor = Instantiate(_actorPrefab, _actorRoot);
                 actor.ui = this;
                 actor.character = character;
+                _actors.Add(actor);
                 return actor;
             }
             else
