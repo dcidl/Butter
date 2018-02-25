@@ -147,7 +147,7 @@ namespace Butter.StartMenu
         }
         void updateSize(IAVGExpression standPic)
         {
-            if (standPic == null)
+            if (standPic == null || standPic.sprite == null)
                 return;
             float maxWidth = ui.size.x * standPic.maxSize.x;
             float maxHeight = ui.size.y * standPic.maxSize.y;
