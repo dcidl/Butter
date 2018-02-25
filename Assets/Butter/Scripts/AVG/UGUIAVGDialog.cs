@@ -22,10 +22,16 @@ namespace Butter.StartMenu
         float _displayedLength;
         public override int dialogDisplayLength
         {
-            get { return (int)_displayedLength; }
+            get { return _typingString != null ? (int)_displayedLength : 0; }
             set
             {
-                _displayedLength = value;
+                if (_typingString != null)
+                {
+                    _displayedLength = value;
+                    _dialogText.text = _typingString.Substring(0, (int)_displayedLength);
+                }
+                else
+                    _displayedLength = 0;
             }
         }
         [Tooltip("每秒显示多少个字符")]

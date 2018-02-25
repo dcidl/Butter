@@ -4,12 +4,19 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using DAFramework;
+using DAFramework.Behaviours;
 using DAFramework.Interfaces;
 
 namespace Butter.StartMenu
 {
     public class AVGUGUI : AVGUI
     {
+        [SerializeField]
+        AVGBehaviourManager _manager;
+        public override AVGManager manager
+        {
+            get { return _manager; }
+        }
         public override bool enableInteraction
         {
             get { return false; }
