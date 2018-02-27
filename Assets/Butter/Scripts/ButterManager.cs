@@ -9,7 +9,7 @@ namespace Butter
     public class ButterManager : GlobalMainManager
     {
         [SerializeField]
-        [ScenePathField]
+        [EditorEx.ScenePathField]
         string _firstScenePath;
         public override string firstScenePath
         {
@@ -52,7 +52,7 @@ namespace Butter
             base.onEndLoadingScene(path);
         }
         [SerializeField]
-        [ScenePathField]
+        [EditorEx.ScenePathField]
         string _gameScenePath;
         public void newGame()
         {

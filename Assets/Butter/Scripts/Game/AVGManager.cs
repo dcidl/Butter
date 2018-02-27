@@ -37,7 +37,7 @@ namespace Butter.Game
             if (_AVG != null)
             {
                 string path = Application.streamingAssetsPath + "/" + "AVGQuickSave.json";
-                using (StreamWriter writer = new StreamWriter(new FileStream(path, FileMode.OpenOrCreate)))
+                using (StreamWriter writer = new StreamWriter(new FileStream(path, FileMode.Create)))
                 {
                     var save = _AVG.save();
                     if (save != null)
@@ -79,5 +79,10 @@ namespace Butter.Game
             else
                 Debug.LogError(this + " 丢失对AVG管理器的引用，无法快速读取存档", this);
         }
+        [SerializeField]
+        Sprite _sprite;
+        [EditorEx.ResourcesPath("_sprite")]
+        [SerializeField]
+        string _spritePath;
     }
 }
