@@ -126,19 +126,6 @@ namespace Butter.StartMenu
                 _image.rectTransform.SetSiblingIndex(value);
             }
         }
-        [Obsolete]
-        public override void setAnchor(int i)
-        {
-            //TODO:SetAnchor不应该是属于Actor的方法，把它重构掉，功能给Anchor。
-            if (0 <= i && i < ui.anchors.Length)
-            {
-                anchor = ui.anchors[i] as UGUIAVGAnchor;
-            }
-            else
-            {
-                anchor = null;
-            }
-        }
         private void Update()
         {
             if (expression != null)

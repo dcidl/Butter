@@ -1945,6 +1945,7 @@ MonoBehaviour:
   _musicSource: {fileID: 1762808030}
   _soundEffectSource: {fileID: 1795710168}
   _manager: {fileID: 1263147939}
+  _enableInteraction: 0
   _actors: []
   _root: {fileID: 1827618365}
   _actorPrefab: {fileID: 114484136750910506, guid: 9893e0162a42ceb4ca7a80bef01ef0e4,
@@ -2114,6 +2115,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25033e306baf0e841ad239d3652b0693, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _ui: {fileID: 1827618367}
   _dialogText: {fileID: 548949141}
   _nameText: {fileID: 404783364}
   _typingString: "\u5199\u4E00\u70B9\u6BD4\u8F83\u957F\u7684\u4E1C\u897F"

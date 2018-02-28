@@ -10,6 +10,8 @@ namespace Butter.StartMenu
     public class UGUIAVGDialog : AVGDialog, IPointerDownHandler
     {
         [SerializeField]
+        AVGUGUI _ui;
+        [SerializeField]
         Text _dialogText;
         [SerializeField]
         Text _nameText;
@@ -61,7 +63,14 @@ namespace Butter.StartMenu
             _typingString = content;
             _displayedLength = 0;
         }
-        private void Update()
+        protected void Awake()
+        {
+            if (_ui == null)
+            {
+                _ui = GetComponentInParent<AVGUGUI>();
+            }
+        }
+        protected void Update()
         {
             if (!_isPaused)
             {
@@ -87,10 +96,13 @@ namespace Butter.StartMenu
         }
         void IPointerDownHandler.OnPointerDown(PointerEventData eventData)
         {
-            if (!eventData.used)
+            if (_ui == null || _ui.enableInteraction)
             {
-                _onClick.Invoke();
-                eventData.Use();
+                if (!eventData.used)
+                {
+                    _onClick.Invoke();
+                    eventData.Use();
+                }
             }
         }
         public override void clearDialog()

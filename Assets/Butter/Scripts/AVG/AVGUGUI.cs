@@ -17,12 +17,14 @@ namespace Butter.StartMenu
         {
             get { return _manager; }
         }
+        [SerializeField]
+        bool _enableInteraction;
         public override bool enableInteraction
         {
-            get { return false; }
+            get { return _enableInteraction; }
             set
             {
-                //TODO:实现禁用交互
+                _enableInteraction = value;
             }
         }
         [SerializeField]
